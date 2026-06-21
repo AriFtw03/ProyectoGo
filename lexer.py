@@ -164,8 +164,8 @@ lexer = lex.lex()
 if __name__ == '__main__':
     import sys
 
-    archivo_prueba1 = 'algoritmo_collaguazo.go' 
-    desarrollador = 'MatiasCollaguazo'
+    archivo_prueba1 = 'algoritmo_alfonzo.go' 
+    desarrollador = 'DiegoAlfonzo'
 
     if len(sys.argv) > 1:
         archivo_prueba1 = sys.argv[1]
