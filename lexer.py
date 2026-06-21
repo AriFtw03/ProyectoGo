@@ -51,6 +51,12 @@ def t_IDENTIFICADOR(t):
     t.type = reserved.get(t.value, 'IDENTIFICADOR')
     return t
 
+# Aporte de Diego Alfonzo (Definido aquí antes de t_NUMERO para evitar conflictos de precedencia en PLY)
+def t_LITERAL_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
 def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
@@ -65,11 +71,7 @@ def t_NUMERO(t):
 # ==========================================
 # APORTE 2: DIEGO ALFONZO
 # ==========================================
-# Definición de decimales para precedencia
-def t_LITERAL_FLOAT(t):
-    r'\d+\.\d+'
-    t.value = float(t.value)
-    return t
+# (t_LITERAL_FLOAT se movió arriba de t_NUMERO por precedencia)
 
 # Operadores Relacionales
 t_IGUAL      = r'=='
@@ -118,8 +120,27 @@ def t_COMENTARIO_MULTILINEA(t):
 # APORTE 3: MATIAS COLLAGUAZO
 # ==========================================
 
- #te dejo esto porq quería probar y lo necesitaba
 errores_lexicos = []
+
+# Gestión de cadenas sin cerrar (el lookahead (?=\n|$) evita requerir el fin de archivo completo)
+def t_LITERAL_STRING_UNTERMINATED(t):
+    r'"([^"\n\\]|\\.)*(?=\n|$)'
+    errores_lexicos.append(f"Error léxico: Cadena de texto sin cerrar en la línea {t.lexer.lineno}")
+    t.lexer.lineno += 1
+    return t
+
+def t_LITERAL_STRING_RAW_UNTERMINATED(t):
+    r'`[^`]*'
+    errores_lexicos.append(f"Error léxico: Cadena de texto raw sin cerrar en la línea {t.lexer.lineno}")
+    t.lexer.lineno += t.value.count('\n')
+    return t
+
+# Gestión de comentarios multilínea sin cerrar (al no cerrarse, consume el resto del archivo de manera codiciosa)
+def t_COMENTARIO_MULTILINEA_UNTERMINATED(t):
+    r'/\*[\s\S]*'
+    errores_lexicos.append(f"Error léxico: Comentario multilínea sin cerrar iniciado en la línea {t.lexer.lineno}")
+    t.lexer.lineno += t.value.count('\n')
+    return t
 
 def t_newline(t):
     r'\n+'
@@ -143,8 +164,8 @@ lexer = lex.lex()
 if __name__ == '__main__':
     import sys
 
-    archivo_prueba1 = 'algoritmo1.go' 
-    desarrollador = 'AriannaFeijoo'
+    archivo_prueba1 = 'algoritmo_collaguazo.go' 
+    desarrollador = 'MatiasCollaguazo'
 
     if len(sys.argv) > 1:
         archivo_prueba1 = sys.argv[1]
