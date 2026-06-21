@@ -142,6 +142,8 @@ def t_COMENTARIO_MULTILINEA_UNTERMINATED(t):
     t.lexer.lineno += t.value.count('\n')
     return t
 
+
+# Aporte - Arianna Feijoo
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
@@ -164,8 +166,8 @@ lexer = lex.lex()
 if __name__ == '__main__':
     import sys
 
-    archivo_prueba1 = 'algoritmo_alfonzo.go' 
-    desarrollador = 'DiegoAlfonzo'
+    archivo_prueba1 = 'algoritmo_feijoo.go' 
+    desarrollador = 'AriannaFeijoo'
 
     if len(sys.argv) > 1:
         archivo_prueba1 = sys.argv[1]
