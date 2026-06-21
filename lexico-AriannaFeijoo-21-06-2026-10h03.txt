@@ -1,0 +1,81 @@
+Archivo analizado: algoritmo1.go
+
+--- TOKENS RECONOCIDOS: ---
+Línea 1 -> Tipo: DIV, Valor: '/'
+Línea 1 -> Tipo: MULT, Valor: '*'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'Archivo'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'de'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'prueba'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'para'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'Analizador'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'L'
+Línea 2 -> Tipo: IDENTIFICADOR, Valor: 'xico'
+Línea 3 -> Tipo: MULT, Valor: '*'
+Línea 3 -> Tipo: DIV, Valor: '/'
+Línea 4 -> Tipo: PACKAGE, Valor: 'package'
+Línea 4 -> Tipo: IDENTIFICADOR, Valor: 'main'
+Línea 7 -> Tipo: FUNC, Valor: 'func'
+Línea 7 -> Tipo: IDENTIFICADOR, Valor: 'sumar'
+Línea 7 -> Tipo: IDENTIFICADOR, Valor: 'a'
+Línea 7 -> Tipo: INT, Valor: 'int'
+Línea 7 -> Tipo: IDENTIFICADOR, Valor: 'b'
+Línea 7 -> Tipo: INT, Valor: 'int'
+Línea 7 -> Tipo: INT, Valor: 'int'
+Línea 8 -> Tipo: RETURN, Valor: 'return'
+Línea 8 -> Tipo: IDENTIFICADOR, Valor: 'a'
+Línea 8 -> Tipo: SUMA, Valor: '+'
+Línea 8 -> Tipo: IDENTIFICADOR, Valor: 'b'
+Línea 11 -> Tipo: FUNC, Valor: 'func'
+Línea 11 -> Tipo: IDENTIFICADOR, Valor: 'main'
+Línea 12 -> Tipo: IDENTIFICADOR, Valor: 'x'
+Línea 12 -> Tipo: ASIG_CORTA, Valor: ':='
+Línea 12 -> Tipo: NUMERO, Valor: '10'
+Línea 13 -> Tipo: IDENTIFICADOR, Valor: 'y'
+Línea 13 -> Tipo: ASIG_CORTA, Valor: ':='
+Línea 13 -> Tipo: NUMERO, Valor: '20'
+Línea 15 -> Tipo: IF, Valor: 'if'
+Línea 15 -> Tipo: IDENTIFICADOR, Valor: 'x'
+Línea 15 -> Tipo: IDENTIFICADOR, Valor: 'y'
+Línea 16 -> Tipo: IDENTIFICADOR, Valor: 'x'
+Línea 16 -> Tipo: ASIGNACION, Valor: '='
+Línea 16 -> Tipo: IDENTIFICADOR, Valor: 'x'
+Línea 16 -> Tipo: MULT, Valor: '*'
+Línea 16 -> Tipo: NUMERO, Valor: '2'
+Línea 17 -> Tipo: ELSE, Valor: 'else'
+Línea 18 -> Tipo: IDENTIFICADOR, Valor: 'x'
+Línea 18 -> Tipo: ASIGNACION, Valor: '='
+Línea 18 -> Tipo: NUMERO, Valor: '0'
+Línea 21 -> Tipo: IDENTIFICADOR, Valor: 'numeros'
+Línea 21 -> Tipo: ASIG_CORTA, Valor: ':='
+Línea 21 -> Tipo: CORCHETE_IZQ, Valor: '['
+Línea 21 -> Tipo: CORCHETE_DER, Valor: ']'
+Línea 21 -> Tipo: INT, Valor: 'int'
+Línea 21 -> Tipo: NUMERO, Valor: '1'
+Línea 21 -> Tipo: NUMERO, Valor: '2'
+Línea 21 -> Tipo: NUMERO, Valor: '3'
+Línea 23 -> Tipo: DIV, Valor: '/'
+Línea 23 -> Tipo: DIV, Valor: '/'
+Línea 23 -> Tipo: IDENTIFICADOR, Valor: 'Error'
+Línea 23 -> Tipo: IDENTIFICADOR, Valor: 'forzado'
+
+--- ERRORES ENCONTRADOS: ---
+Error léxico: Carácter 'é' no reconocido en la línea 2
+Error léxico: Carácter '(' no reconocido en la línea 7
+Error léxico: Carácter ',' no reconocido en la línea 7
+Error léxico: Carácter ')' no reconocido en la línea 7
+Error léxico: Carácter '{' no reconocido en la línea 7
+Error léxico: Carácter '}' no reconocido en la línea 9
+Error léxico: Carácter '(' no reconocido en la línea 11
+Error léxico: Carácter ')' no reconocido en la línea 11
+Error léxico: Carácter '{' no reconocido en la línea 11
+Error léxico: Carácter '<' no reconocido en la línea 15
+Error léxico: Carácter '{' no reconocido en la línea 15
+Error léxico: Carácter '}' no reconocido en la línea 17
+Error léxico: Carácter '{' no reconocido en la línea 17
+Error léxico: Carácter '}' no reconocido en la línea 19
+Error léxico: Carácter '{' no reconocido en la línea 21
+Error léxico: Carácter ',' no reconocido en la línea 21
+Error léxico: Carácter ',' no reconocido en la línea 21
+Error léxico: Carácter '}' no reconocido en la línea 21
+Error léxico: Carácter '@' no reconocido en la línea 24
+Error léxico: Carácter '}' no reconocido en la línea 25
