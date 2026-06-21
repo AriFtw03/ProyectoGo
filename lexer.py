@@ -14,13 +14,14 @@ reserved = {
 }
 
 tokens = [
-    'IDENTIFICADOR', 'NUMERO',
+    'IDENTIFICADOR', 'NUMERO', 'LITERAL_STRING', 'LITERAL_FLOAT',
     'SUMA', 'RESTA', 'MULT', 'DIV', 'MOD',
     'ASIGNACION', 'ASIG_CORTA',
     'IGUAL', 'DIFERENTE', 'MENOR', 'MAYOR', 'MENORIGUAL', 'MAYORIGUAL',
     'AND', 'OR', 'NOT',
     'PAREN_IZQ', 'PAREN_DER', 'LLAVE_IZQ', 'LLAVE_DER',
-    'CORCHETE_IZQ', 'CORCHETE_DER', 'COMA', 'PUNTO', 'DOS_PUNTOS'
+    'CORCHETE_IZQ', 'CORCHETE_DER', 'COMA', 'PUNTO', 'DOS_PUNTOS',
+    'LITERAL_STRING_UNTERMINATED', 'LITERAL_STRING_RAW_UNTERMINATED', 'COMENTARIO_MULTILINEA_UNTERMINATED'
 ] + list(reserved.values())
 
 t_ignore = ' \t'
@@ -64,7 +65,48 @@ def t_NUMERO(t):
 # ==========================================
 # APORTE 2: DIEGO ALFONZO
 # ==========================================
+# Definición de decimales para precedencia
+def t_LITERAL_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
 
+# Operadores Relacionales
+t_IGUAL      = r'=='
+t_DIFERENTE  = r'!='
+t_MENORIGUAL = r'<='
+t_MAYORIGUAL = r'>='
+t_MENOR      = r'<'
+t_MAYOR      = r'>'
+
+# Operadores Lógicos
+t_AND        = r'&&'
+t_OR         = r'\|\|'
+t_NOT        = r'!'
+
+# Delimitadores
+t_PAREN_IZQ  = r'\('
+t_PAREN_DER  = r'\)'
+t_LLAVE_IZQ  = r'\{'
+t_LLAVE_DER  = r'\}'
+t_COMA       = r','
+t_PUNTO      = r'\.'
+t_DOS_PUNTOS = r':'
+
+# Literales de cadena
+def t_LITERAL_STRING(t):
+    r'("([^"\\]|\\.)*")|(`[^`]*`)'
+    return t
+
+# Comentarios
+def t_COMENTARIO_LINEA(t):
+    r'//.*'
+    pass
+
+def t_COMENTARIO_MULTILINEA(t):
+    r'/\*[\s\S]*?\*/'
+    t.lexer.lineno += t.value.count('\n')
+    pass
 
 # ==========================================
 # FIN APORTE 2: APORTE DIEGO ALFONZO
@@ -99,8 +141,15 @@ lexer = lex.lex()
 # BLOQUE DE EJECUCIÓN Y GENERACIÓN DE LOG
 # ==========================================
 if __name__ == '__main__':
+    import sys
 
     archivo_prueba1 = 'algoritmo1.go' 
+    desarrollador = 'AriannaFeijoo'
+
+    if len(sys.argv) > 1:
+        archivo_prueba1 = sys.argv[1]
+    if len(sys.argv) > 2:
+        desarrollador = sys.argv[2]
     
     try:
         with open(archivo_prueba1, 'r', encoding='utf-8') as archivo:
@@ -120,7 +169,7 @@ if __name__ == '__main__':
 
     #lexico-NombreApellido-DD-MM-YYYY-HHhMM.txt
     fecha_hora = datetime.datetime.now().strftime("%d-%m-%Y-%Hh%M")
-    nombre_log = f"lexico-AriannaFeijoo-{fecha_hora}.txt"  #Cambiar el nombre al generar cada pruebaaaaa
+    nombre_log = f"lexico-{desarrollador}-{fecha_hora}.txt"
 
     with open(nombre_log, 'w', encoding='utf-8') as log_file:
         log_file.write(f"Archivo analizado: {archivo_prueba1}\n\n")
