@@ -1,0 +1,14 @@
+Archivo analizado: algoritmo_alfonzo.go
+
+--- ESTADO DEL ANÁLISIS: ---
+Resultado: SINTAXIS INCORRECTA (Se encontraron errores)
+
+--- ERRORES LÉXICOS ENCONTRADOS: ---
+Error léxico: Carácter '@' no reconocido en la línea 64
+Error léxico: Carácter '$' no reconocido en la línea 65
+Error léxico: Carácter '#' no reconocido en la línea 66
+Error léxico: Cadena de texto sin cerrar en la línea 69
+Error léxico: Cadena de texto raw sin cerrar en la línea 72
+
+--- ERRORES SINTÁCTICOS ENCONTRADOS: ---
+Error sintáctico: Token inesperado '"Esta cadena de texto nunca se cierra' de tipo LITERAL_STRING_UNTERMINATED en la línea 69

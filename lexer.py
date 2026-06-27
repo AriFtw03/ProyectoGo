@@ -20,7 +20,8 @@ tokens = [
     'IGUAL', 'DIFERENTE', 'MENOR', 'MAYOR', 'MENORIGUAL', 'MAYORIGUAL',
     'AND', 'OR', 'NOT',
     'PAREN_IZQ', 'PAREN_DER', 'LLAVE_IZQ', 'LLAVE_DER',
-    'CORCHETE_IZQ', 'CORCHETE_DER', 'COMA', 'PUNTO', 'DOS_PUNTOS',
+    'CORCHETE_IZQ', 'CORCHETE_DER', 'COMA', 'PUNTO', 'DOS_PUNTOS', 'PUNTO_COMA',
+    'INCREMENTO', 'DECREMENTO', 'AMPERSAND',
     'LITERAL_STRING_UNTERMINATED', 'LITERAL_STRING_RAW_UNTERMINATED', 'COMENTARIO_MULTILINEA_UNTERMINATED'
 ] + list(reserved.values())
 
@@ -94,6 +95,10 @@ t_LLAVE_DER  = r'\}'
 t_COMA       = r','
 t_PUNTO      = r'\.'
 t_DOS_PUNTOS = r':'
+t_PUNTO_COMA = r';'
+t_INCREMENTO = r'\+\+'
+t_DECREMENTO = r'--'
+t_AMPERSAND  = r'&'
 
 # Literales de cadena
 def t_LITERAL_STRING(t):

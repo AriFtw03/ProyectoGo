@@ -4,13 +4,23 @@
   - Mapas asociativos
   - Operadores relacionales (==, !=, <, >, <=, >=)
   - Operadores lógicos (&&, ||, !)
-  - Comentarios (de una y de múltiples líneas)
-  - Delimitadores (parentesis, llaves, comas, puntos y dos puntos)
-  - Literales de cadena (LITERAL_STRING) y decimales (LITERAL_FLOAT)
+  - Comentarios
+  - Delimitadores
+  - Literales de cadena y decimales
+  - Funciones con retorno múltiple
+  - Bucles for
 */
 package main
 
 import "fmt"
+
+// Función con retorno múltiple
+func dividir(a int, b int) (int, error) {
+    if b == 0 {
+        return 0, nil
+    }
+    return a / b, nil
+}
 
 func main() {
     // Declaración y asignación de un mapa asociativo (Clave string, Valor int)
@@ -36,6 +46,20 @@ func main() {
     // Impresión usando delimitadores
     fmt.Println(edades["Diego"], precios["manzana"], noValido)
 
+    // Bucle for clásico
+    var limite int = 10
+    var divisor int = 2
+
+    for i := 0; i < limite; i++ {
+        res, _ := dividir(i, divisor)
+        fmt.Println("Division de", i, "entre", divisor, "es", res)
+    }
+    edades2 := map[string]int{"Diego": 21}
+    fmt.Println(edades2["Diego"])
+
+    // Solicitud de datos
+    var entrada string
+    fmt.Scanln(&entrada)
     // Errores sencillos (caracteres no reconocidos)
     @
     $
