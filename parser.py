@@ -340,6 +340,116 @@ def p_statement_if(p):
     else:
         p[0] = ('if', p[2], p[3], p[5])
 
+# ==========================================
+# INICIO APORTE 3: MATIAS COLLAGUAZO
+# ==========================================
+
+# 1. Estructura Switch
+def p_statement_switch(p):
+    '''statement : SWITCH expression LLAVE_IZQ case_list default_opt LLAVE_DER'''
+    p[0] = ('switch', p[2], p[4], p[5])
+
+def p_case_list(p):
+    '''case_list : case_list case_clause
+                 | case_clause
+                 | empty'''
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    elif p[1] == []:
+        p[0] = []
+    else:
+        p[0] = [p[1]]
+
+def p_case_clause(p):
+    '''case_clause : CASE expression DOS_PUNTOS statements_opt'''
+    p[0] = ('case', p[2], p[4])
+
+def p_default_opt(p):
+    '''default_opt : DEFAULT DOS_PUNTOS statements_opt
+                   | empty'''
+    if len(p) == 4:
+        p[0] = ('default', p[3])
+    else:
+        p[0] = None
+
+# 2. Funciones anónimas
+def p_expression_closure(p):
+    '''expression : FUNC PAREN_IZQ parameters_opt PAREN_DER return_spec_opt block'''
+    p[0] = ('closure', p[3], p[5], p[6])
+
+# 3. Estructuras personalizadas (Structs)
+def p_top_decl_struct(p):
+    '''top_decl : struct_decl'''
+    p[0] = p[1]
+
+def p_statement_struct(p):
+    '''statement : struct_decl'''
+    p[0] = p[1]
+
+def p_struct_decl(p):
+    '''struct_decl : TYPE IDENTIFICADOR STRUCT LLAVE_IZQ struct_fields_opt LLAVE_DER'''
+    p[0] = ('struct_decl', p[2], p[5])
+
+def p_struct_fields_opt(p):
+    '''struct_fields_opt : struct_field_list
+                         | empty'''
+    p[0] = p[1]
+
+def p_struct_field_list(p):
+    '''struct_field_list : struct_field_list struct_field
+                         | struct_field'''
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    else:
+        p[0] = [p[1]]
+
+def p_struct_field(p):
+    '''struct_field : IDENTIFICADOR type_spec'''
+    p[0] = ('struct_field', p[1], p[2])
+
+# 4. Declaración de variables en bloque
+def p_statement_var_block(p):
+    '''statement : var_block'''
+    p[0] = p[1]
+
+def p_top_decl_var_block(p):
+    '''top_decl : var_block'''
+    p[0] = p[1]
+
+def p_var_block(p):
+    '''var_block : VAR PAREN_IZQ var_decl_list PAREN_DER'''
+    p[0] = ('var_block', p[3])
+
+def p_var_decl_list(p):
+    '''var_decl_list : var_decl_list var_decl_item
+                     | var_decl_item
+                     | empty'''
+    if len(p) == 3:
+        p[0] = p[1] + [p[2]]
+    elif p[1] == []:
+        p[0] = []
+    else:
+        p[0] = [p[1]]
+
+def p_var_decl_item(p):
+    '''var_decl_item : IDENTIFICADOR type_spec ASIGNACION expression
+                     | IDENTIFICADOR type_spec'''
+    if len(p) == 5:
+        p[0] = ('var_item', p[1], p[2], p[4])
+    else:
+        p[0] = ('var_item', p[1], p[2], None)
+
+# ==========================================
+# FIN APORTE 3: MATIAS COLLAGUAZO
+# ==========================================
+
+# ==========================================
+# APORTE 1: ARIANNA FEIJOO
+# ==========================================
+# Declaración de arreglos y slices (ej. numeros := []int{1, 2, 3})
+# Integrar `type_slice` en `type_spec` y en las expresiones literales.
+# ==========================================
+
 # Regla auxiliar utilizada para producciones vacías
 def p_empty(p):
     '''empty :'''
@@ -367,8 +477,8 @@ if __name__ == '__main__':
     import sys
     import datetime
 
-    archivo_prueba = 'algoritmo_alfonzo.go'
-    desarrollador = 'DiegoAlfonzo'
+    archivo_prueba = 'prueba_sintactico_collaguazo.go'
+    desarrollador = 'MatiasCollaguazo'
 
     if len(sys.argv) > 1:
         archivo_prueba = sys.argv[1]
