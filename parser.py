@@ -446,8 +446,19 @@ def p_var_decl_item(p):
 # ==========================================
 # APORTE 1: ARIANNA FEIJOO
 # ==========================================
-# Declaración de arreglos y slices (ej. numeros := []int{1, 2, 3})
-# Integrar `type_slice` en `type_spec` y en las expresiones literales.
+
+# 1. Definición del tipo genérico Slice (ej. []int, []string)
+def p_type_spec_slice(p):
+    '''type_spec : CORCHETE_IZQ CORCHETE_DER type_spec'''
+    p[0] = ('type_slice', p[3])
+
+# 2. Expresión literal de Slices y Arreglos (ej. []int{1, 2, 3})
+def p_expression_slice_literal(p):
+    '''expression : CORCHETE_IZQ CORCHETE_DER type_spec LLAVE_IZQ expression_list_opt LLAVE_DER'''
+    p[0] = ('slice_literal', p[3], p[5])
+
+# ==========================================
+# FIN APORTE 1: ARIANNA FEIJOO
 # ==========================================
 
 # Regla auxiliar utilizada para producciones vacías

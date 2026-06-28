@@ -1,0 +1,10 @@
+Archivo analizado: prueba_sintactico_feijoo.go
+
+--- ESTADO DEL ANÁLISIS: ---
+Resultado: SINTAXIS INCORRECTA (Se encontraron errores)
+
+--- ERRORES LÉXICOS ENCONTRADOS: ---
+Ningún error léxico encontrado.
+
+--- ERRORES SINTÁCTICOS ENCONTRADOS: ---
+Error sintáctico: Token inesperado 'total' de tipo IDENTIFICADOR en la línea 28
